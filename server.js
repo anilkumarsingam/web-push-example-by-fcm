@@ -27,18 +27,20 @@ app.post('/api/webpush/register', (req, res) => {
 	params['platform'] = 'mobile_web';
 	params['name'] = 'web_user';
 
+	console.log(params);
+
 	let request = require('request');
 	request({
-			'url':'http://localhost:5000/api/registerUser',
+			'url':'http://localhost:5001/api/registerUser',
 			'method':'POST',
 			'headers': {
 				'content-type': 'application/json',
 			},
 			'json':params
 		},function (error, response, body) {
-		console.log('error:', error);
-		console.log('statusCode:', response && response.statusCode);
-		console.log('body:', body);
+			console.log('error:', error);
+			console.log('statusCode:', response && response.statusCode);
+			console.log('body:', body);
 		});
 
 	res.status(200).set('Content-Type', 'application/json').send(JSON.stringify(body));
